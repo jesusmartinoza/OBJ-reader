@@ -8,3 +8,24 @@
 //
 
 #include "ObjModel.hpp"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+ObjModel::ObjModel(string fileName)
+{
+    cout << "File name: " << fileName << "\n";
+    string line;
+    ifstream file (fileName);
+    if (file.is_open())
+    {
+        while ( getline (file,line) )
+        {
+            cout << line << '\n';
+        }
+        file.close();
+    }
+    
+    else cout << "Unable to open file";
+}

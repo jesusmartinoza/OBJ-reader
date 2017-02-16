@@ -14,11 +14,14 @@
 #include "ObjVertex.hpp"
 #include "ObjObject.hpp"
 
+using namespace std;
+
 class ObjModel {
 private:
-    std::vector<ObjVertex> vertices;
-    std::vector<ObjObject> objects;
+    vector<ObjVertex> vertices;
+    vector<ObjObject> objects;
 public:
+    ObjModel(string fileName);
     void print();
 };
 

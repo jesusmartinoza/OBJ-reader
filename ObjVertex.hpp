@@ -3,6 +3,7 @@
 //  ObjReader
 //
 //  Created by Jesús Martínez on 16/02/17.
+//  Coordinates of the vertex.
 //
 
 #ifndef ObjVertex_hpp
