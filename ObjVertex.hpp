@@ -10,6 +10,8 @@
 #define ObjVertex_hpp
 
 #include <stdio.h>
+#include <iostream>
+#include <string>
 
 class ObjVertex {
 private:
@@ -18,6 +20,7 @@ private:
     float z;
 public:
     ObjVertex(float x, float y, float z);
+    void print();
     float getX();
     float getY();
     float getZ();

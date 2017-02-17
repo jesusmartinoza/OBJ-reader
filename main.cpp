@@ -15,5 +15,6 @@ int main(int argc, const char * argv[]) {
     }
     
     ObjModel model(argv[1]);
+    model.print();
     return 0;
 }

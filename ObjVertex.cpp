@@ -12,3 +12,8 @@ ObjVertex::ObjVertex(float x, float y, float z) {
     this->y = y;
     this->z = z;
 }
+
+void ObjVertex::print()
+{
+    std::cout << x << " " << y << " " << z << std::endl;
+}
