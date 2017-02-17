@@ -17,7 +17,7 @@ void ObjObject::addFaceVector(vector<int> faceVector)
     this->faces.push_back(faceVector);
 }
 
-vector<vector<int>>& ObjObject::getFaces()
+vector<vector<int> >& ObjObject::getFaces()
 {
     return faces;
 }

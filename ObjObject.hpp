@@ -18,12 +18,12 @@ using namespace std;
 class ObjObject {
 private:
     string name;
-    vector<vector<int>> faces;
+    vector<vector<int> > faces;
 public:
     ObjObject(string name);
     string getName();
     void addFaceVector(vector<int> faceVector);
-    vector<vector<int>>& getFaces();
+    vector<vector<int> >& getFaces();
 };
 
 #endif /*ObjObject_hpp */

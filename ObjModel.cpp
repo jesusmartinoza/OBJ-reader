@@ -29,7 +29,7 @@ ObjModel::ObjModel(string fileName)
     {
         while ( getline (file,line) )
         {
-            cout << line << '\n';
+            cout << line;
             switch (line[0]) {
                 // Create OBJ object and add it to vector.
                 case 'o': {
@@ -85,7 +85,6 @@ vector<char*> ObjModel::getSplittedLine(string line)
     lineWord = strtok (const_cast<char *>(line.c_str()), " ");
     while (lineWord != NULL)
     {
-        cout << lineWord;
         lineWord = strtok (NULL, " ");
         splitted.push_back(lineWord);
     }
@@ -104,13 +103,9 @@ void ObjModel::print()
     {
         // Print vertices
         cout << "o " << object.getName() << endl;
-        for(auto &faceVector : object.getFaces())
-        {
-            for(auto faceIndex :faceVector)
-            {
-                cout << "v ";
-                vertices.at(faceIndex).print();
-            }
+        for(auto &vertex : vertices) {
+            cout << "v ";
+            vertex.print();
         }
         
         // Print faces
