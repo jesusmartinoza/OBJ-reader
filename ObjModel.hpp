@@ -22,6 +22,7 @@ private:
     vector<ObjObject> objects;
 public:
     ObjModel(string fileName);
+    vector<char*> getSplittedLine(string line);
     void print();
 };
 

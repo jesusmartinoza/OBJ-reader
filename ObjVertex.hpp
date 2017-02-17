@@ -17,9 +17,13 @@ private:
     float y;
     float z;
 public:
+    ObjVertex(float x, float y, float z);
     float getX();
     float getY();
     float getZ();
+    void setX();
+    void setY();
+    void setZ();
 };
 
 #endif /* ObjVertex_hpp */
