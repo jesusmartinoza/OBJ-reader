@@ -16,6 +16,13 @@
 using namespace std;
 
 /**
+ Default constructor
+ **/
+ObjModel::ObjModel() {
+    
+}
+
+/**
  Constructor. Read obj file as text file and create OBJModel.
  @param fileName Name of the obj file with extension.
  **/
@@ -30,7 +37,7 @@ ObjModel::ObjModel(string fileName)
     {
         while ( getline (file,line) )
         {
-            cout << line;
+            //cout << line;
             switch (line[0]) {
                 // Create OBJ object and add it to vector.
                 case 'o': {
@@ -60,7 +67,7 @@ ObjModel::ObjModel(string fileName)
                 }
 
             }
-            cout << endl;
+            //cout << endl;
         }
         file.close();
     }
@@ -89,6 +96,20 @@ vector<const char*> ObjModel::getSplittedLine(const string &line)
 }
 
 /**
+ return vertices vector
+ **/
+vector<ObjVertex> ObjModel::getVertices() {
+    return vertices;
+}
+
+/**
+ return objects vector
+ **/
+vector<ObjObject> ObjModel::getObjects() {
+    return objects;
+}
+
+/**
  Read all OBJ Model info and print.
  **/
 void ObjModel::print()
@@ -108,10 +129,9 @@ void ObjModel::print()
         for(auto &faceVector : object.getFaces())
         {
             cout << "f ";
-            for(auto faceIndex :faceVector)
+            for(auto vectorIndex : faceVector)
             {
-                int n = faceIndex + 1;
-                cout << (faceIndex + 1) << " ";
+                cout << (vectorIndex + 1) << " ";
             }
             cout << endl;
         }

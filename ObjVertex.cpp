@@ -7,10 +7,26 @@
 
 #include "ObjVertex.hpp"
 
-ObjVertex::ObjVertex(float x, float y, float z) {
+ObjVertex::ObjVertex(float x, float y, float z)
+{
     this->x = x;
     this->y = y;
     this->z = z;
+}
+
+float ObjVertex::getX()
+{
+    return x;
+}
+
+float ObjVertex::getY()
+{
+    return y;
+}
+
+float ObjVertex::getZ()
+{
+    return z;
 }
 
 void ObjVertex::print()
