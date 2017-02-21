@@ -11,6 +11,7 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -33,14 +34,14 @@ ObjModel::ObjModel(string fileName)
             switch (line[0]) {
                 // Create OBJ object and add it to vector.
                 case 'o': {
-                    char* name = getSplittedLine(line).at(0);
+                    const char* name = getSplittedLine(line).at(0);
                     ObjObject object = ObjObject(string(name));
                     this->objects.push_back(object);
                     break;
                 }
                 // Create vertex and add it to vector.
                 case 'v': {
-                    vector<char*> coords = getSplittedLine(line);
+                    vector<const char*> coords = getSplittedLine(line);
                     ObjVertex vertex = ObjVertex(::atof(coords.at(0)), ::atof(coords.at(1)), ::atof(coords.at(2)));
                     vertices.push_back(vertex);
                     break;
@@ -48,18 +49,13 @@ ObjModel::ObjModel(string fileName)
                 // Add vertices indexes to the last OBJ object created.
                 case 'f': {
                     vector<int> faceVector;
-                    vector<char*> facesIndexes = getSplittedLine(line);
+                    vector<const char*> facesIndexes = getSplittedLine(line);
                     
                     for(auto &faceIndex : facesIndexes)
                     {
-                        if(faceIndex != NULL)
-                            faceVector.push_back(atoi(faceIndex) - 1);
+                        faceVector.push_back((atoi(faceIndex)) - 1);
                     }
                     objects.back().addFaceVector(faceVector);
-                    /*for(int i = 0; i < facesIndexes.size(); i++)
-                    {
-                       lastObject.getFacesIndexes().push_back(atoi(facesIndexes.at(i)) - 1);
-                    }*/
                     break;
                 }
 
@@ -77,9 +73,9 @@ ObjModel::ObjModel(string fileName)
  @param line Line to be splitted.
  @return vector with words.
  **/
-vector<char*> ObjModel::getSplittedLine(string line)
+vector<const char*> ObjModel::getSplittedLine(const string &line)
 {
-    vector<char*> splitted;
+    vector<const char*> splitted;
     char * lineWord = nullptr;
     
     lineWord = strtok (const_cast<char *>(line.c_str()), " ");
@@ -88,7 +84,7 @@ vector<char*> ObjModel::getSplittedLine(string line)
         lineWord = strtok (NULL, " ");
         splitted.push_back(lineWord);
     }
-    
+    splitted.pop_back();
     return splitted;
 }
 
@@ -97,7 +93,7 @@ vector<char*> ObjModel::getSplittedLine(string line)
  **/
 void ObjModel::print()
 {
-    cout << "**** OBJ MODEL *******" << endl;
+    cout << "\n**** OBJ MODEL *******" << endl;
     
     for (auto &object : objects)
     {
@@ -114,7 +110,8 @@ void ObjModel::print()
             cout << "f ";
             for(auto faceIndex :faceVector)
             {
-                cout << faceIndex + 1 << " ";
+                int n = faceIndex + 1;
+                cout << (faceIndex + 1) << " ";
             }
             cout << endl;
         }

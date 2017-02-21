@@ -22,7 +22,7 @@ private:
     vector<ObjObject> objects;
 public:
     ObjModel(string fileName);
-    vector<char*> getSplittedLine(string line);
+    vector<const char*> getSplittedLine(const string &line);
     void print();
 };
 
