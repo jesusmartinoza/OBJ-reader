@@ -16,18 +16,37 @@ ObjModel model;
 void init (void)
 {
     glClearColor (0.0, 0.0, 0.0, 0.0);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    // Calculate camera scale
+    float x1 = model.getVertices().at(0).getX();
+    float x2 = model.getVertices().at(0).getX();
+    float y1 = model.getVertices().at(0).getY();
+    float y2 = model.getVertices().at(0).getY();
+    
+    for(auto &faceVector : model.getVertices())
+    {
+        if(faceVector.getX() < x1 ) {
+            x1 = faceVector.getX();
+        }
+        
+        if(faceVector.getX() > x2 ) {
+            x2 = faceVector.getX();
+        }
+        
+        if(faceVector.getX() > x2 ) {
+            x2 = faceVector.getX();
+        }
+    }
+    glFrustum(-2, 2, -2, 2, 1, 80);
 }
 
 void reshape(int w, int h)
 {
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    glFrustum(-2, 2, -2, 2, 1, 40);
-    
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    glTranslatef(0, 0, -3);
-    glRotatef(50, 0, 1, 0);
+    glTranslatef(0, 0, -2);
+    glRotatef(30, 0, 1, 0);
 }
 
 void display(void)
@@ -35,14 +54,12 @@ void display(void)
     // clear all pixels
     glClear (GL_COLOR_BUFFER_BIT);
     
-    glColor3f(1.00, 0.44, 0.13);
-    
     for (auto &object : model.getObjects())
     {
         for(auto &faceVector : object.getFaces())
         {
+            glColor3ub(rand()%60, rand()%155 + 100, rand()%70 );
             glBegin(GL_LINE_LOOP);
-
             for(auto vectorIndex : faceVector)
             {
                 ObjVertex vertex = model.getVertices().at(vectorIndex);
@@ -61,8 +78,7 @@ int main(int argc, char * argv[]) {
         return 1;
     }
     
-    ObjModel modelA(argv[1]);
-    model = modelA;
+    model = ObjModel(argv[1]);
     //modelA.print();
     
     glutInit(&argc, argv);
